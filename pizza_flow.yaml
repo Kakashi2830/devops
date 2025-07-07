@@ -1,0 +1,17 @@
+jobs:
+  prepare:
+    steps:
+      - name: 🍕 Roll Dough
+        run: echo "Dough ready!"
+
+  bake:
+    needs: prepare
+    steps:
+      - name: 🔥 Bake at 200°C
+        run: echo "Pizzas baking!"
+
+  serve:
+    needs: bake
+    steps:
+      - name: 🚀 Deliver to Customer
+        run: echo "Bon appétit!"
