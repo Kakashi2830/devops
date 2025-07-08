@@ -1,0 +1,164 @@
+name: Minecraft Endgame Progression
+on: [workflow_dispatch]
+
+jobs:
+  # === Overworld Progression ===
+  spawn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: spawn
+        run: echo "🌍 Spawned in Overworld"
+
+  wood:
+    needs: spawn
+    runs-on: ubuntu-latest
+    steps:
+      - name: punch_trees
+        run: echo "🪵 Got 4 oak logs"
+
+  stone_tools:
+    needs: wood
+    runs-on: ubuntu-latest
+    steps:
+      - name: craft_stone_pickaxe
+        run: echo "⛏️ Stone pickaxe crafted!"
+
+  iron_tools:
+    needs: stone_tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: mine_iron
+        run: echo "🔩 Found iron ore (requires stone pickaxe)"
+      - name: smelt_iron
+        run: echo "🔥 Smelted iron ingots"
+      - name: craft_iron_pickaxe
+        run: echo "⚒️ Iron pickaxe crafted!"
+
+  diamond_tools:
+    needs: iron_tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: mine_diamonds
+        run: echo "💎 Found diamonds (requires iron pickaxe)"
+      - name: craft_diamond_pickaxe
+        run: echo "✨ Diamond pickaxe crafted!"
+
+  # === Nether Progression ===
+  farm_obsidian:
+    needs: diamond_tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: find_lava
+        run: echo "🌋 Found lava pool"
+      - name: place_water
+        run: echo "💦 Used water bucket to create obsidian"
+      - name: mine_obsidian
+        run: echo "🖤 Mined 10 obsidian (requires diamond pickaxe)"
+
+  build_nether_portal:
+    needs: farm_obsidian
+    runs-on: ubuntu-latest
+    steps:
+      - name: arrange_obsidian
+        run: echo "🧱 Built 4x5 obsidian frame"
+      - name: ignite_portal
+        run: echo "🔥 Used flint & steel to activate portal"
+      - name: enter_nether
+        run: echo "😈 Achievement Unlocked: 'We Need to Go Deeper'"
+
+  find_fortress:
+    needs: build_nether_portal
+    runs-on: ubuntu-latest
+    steps:
+      - name: navigate_nether
+        run: echo "🧭 Using cobblestone bridges to avoid ghasts"
+      - name: locate_fortress
+        run: echo "🏰 Found Nether Fortress!"
+
+  farm_blaze_rods:
+    needs: find_fortress
+    runs-on: ubuntu-latest
+    steps:
+      - name: kill_blazes
+        run: echo "🔥 Obtained 8 Blaze Rods"
+      - name: craft_blaze_powder
+        run: echo "✨ Brewed Blaze Powder"
+
+  farm_nether_wart:
+    needs: find_fortress
+    runs-on: ubuntu-latest
+    steps:
+      - name: harvest_wart
+        run: echo "🌱 Collected Nether Wart from fortress garden"
+
+  hunt_endermen:
+    needs: build_nether_portal
+    runs-on: ubuntu-latest
+    steps:
+      - name: locate_enderman
+        run: echo "🎯 Found Enderman in warped forest"
+      - name: obtain_pearl
+        run: echo "🌀 Got Ender Pearl (20% drop chance)"
+
+  # === Crafting Systems ===
+  brew_potions:
+    needs: [farm_blaze_rods, farm_nether_wart]
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup_brew_stand
+        run: echo "⚗️ Crafted Brewing Stand with Blaze Rods"
+      - name: strength_potion
+        run: echo "💪 Brewed Potion of Strength (Nether Wart + Blaze Powder)"
+      - name: fire_resistance
+        run: echo "🧯 Brewed Fire Resistance Potion"
+
+  netherite_gear:
+    needs: [build_nether_portal, diamond_tools]
+    runs-on: ubuntu-latest
+    steps:
+      - name: mine_debris
+        run: echo "💠 Mined Ancient Debris (TNT mining technique)"
+      - name: upgrade_gear
+        run: echo "🛡️ Achievement Unlocked: 'Cover Me in Debris' (Full Netherite Armor)"
+
+  # === Endgame ===
+  locate_stronghold:
+    needs: [brew_potions, netherite_gear, hunt_endermen]
+    runs-on: ubuntu-latest
+    steps:
+      - name: craft_eyes
+        run: echo "👁️ Crafted 12 Ender Eyes (Blaze Powder + Ender Pearls)"
+      - name: find_stronghold
+        run: echo "🗺️ Located Stronghold after 3 throws"
+
+  enter_end:
+    needs: locate_stronghold
+    runs-on: ubuntu-latest
+    steps:
+      - name: activate_portal
+        run: echo "🌀 Filled End Portal Frame with Eyes of Ender"
+      - name: jump_in
+        run: echo "🌌 Entered The End Dimension"
+
+  ender_dragon:
+    needs: enter_end
+    runs-on: ubuntu-latest
+    steps:
+      - name: destroy_crystals
+        run: echo "💥 Destroyed End Crystals with arrows"
+      - name: melee_combat
+        run: echo "⚔️ Dodged dragon breath while attacking"
+      - name: victory
+        run: echo "🐉 Achievement Unlocked: 'Free the End' (Dragon Defeated!)"
+      - name: exit_portal
+        run: echo "📜 Entered End Gateway to collect Dragon Egg"
+
+  # === Post-Game ===
+  end_city:
+    needs: ender_dragon
+    runs-on: ubuntu-latest
+    steps:
+      - name: find_ship
+        run: echo "🏙️ Located End City with Elytra Ship"
+      - name: loot_elytra
+        run: echo "🪽 Obtained Elytra and Dragon Head"
