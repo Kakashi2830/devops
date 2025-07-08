@@ -1,0 +1,22 @@
+name: Deploy Music Player
+on:
+  push:
+    branches:[main]
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Render
+        uses: render-actions/deploy@v1
+
+        with:
+          service-id: ${{ secrets.RENDER_MUSIC_SERVICE_ID }}
+          # Required for static sites:
+          static-site: true  
+          build-command: "echo 'No build needed for Week 1'"
+          publish-dir: "./"
